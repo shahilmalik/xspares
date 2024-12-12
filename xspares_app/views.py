@@ -19,7 +19,7 @@ def get_items_by_car(request):
     """
     API to retrieve items based on car brand, model, and variant.
     """
-    data = request.data
+    data = request.query_params
     brand = data.get("brand")
     model = data.get("model")
     variant = data.get("variant")
