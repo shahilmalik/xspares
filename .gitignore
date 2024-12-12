@@ -1,0 +1,22 @@
+
+# Django
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env.bak/
+venv.bak/
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
+.media
+.static
+local_settings.py
+db.sqlite3-journal
+
+# virtualenv
+.venv
+venv/
+ENV/
+env
