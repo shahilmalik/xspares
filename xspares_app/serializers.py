@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.db.models import Avg, Count
-from .models import Item, VendorItem, Review
+from .models import Item, VendorItem, Review, Car
 
 
 class ItemSerializer(serializers.ModelSerializer):
@@ -23,3 +23,9 @@ class ItemSerializer(serializers.ModelSerializer):
         representation['vendor_count'] = vendor_count
 
         return representation
+
+
+class CarModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car
+        fields = '__all__'
