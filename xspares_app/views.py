@@ -3,15 +3,22 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Avg, Count
 from .models import Car, Item, VendorItem, Review
-from .serializers import ItemSerializer
+from .serializers import ItemSerializer, CarModelSerializer
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 
-@api_view(["POST"])
+@swagger_auto_schema(
+    tags=["Home"],
+    method="GET",
+    query_serializer=CarModelSerializer,
+    responses={200: "Data fetched successfully.", 404: "Car not found."},
+)
+@api_view(["GET"])
 def get_items_by_car(request):
     """
     API to retrieve items based on car brand, model, and variant.
     """
-    # Validate input
     data = request.data
     brand = data.get("brand")
     model = data.get("model")
