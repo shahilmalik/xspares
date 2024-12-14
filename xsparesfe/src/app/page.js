@@ -1,11 +1,10 @@
-import SearchField from "@/components/Level1/SearchField";
-import TopNavbar from "@/components/Level2/TopNavbar";
+import HomePage from "@/components/Level3/HomePage";
 import React from "react";
 
 function page() {
   return (
     <div className="bg-white">
-      <TopNavbar />
+     <HomePage/>
     </div>
   );
 }
