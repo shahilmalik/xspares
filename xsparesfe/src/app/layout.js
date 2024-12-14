@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
-
+import TopNavbar from "@/components/Level2/TopNavbar";
 
 export const metadata = {
   title: "Create Next App",
@@ -10,10 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased`}
-      >
-        {children}
+      <body className={`antialiased`}>
+        <div>
+          <TopNavbar />
+        </div>
+        <div>{children}</div>
       </body>
     </html>
   );
