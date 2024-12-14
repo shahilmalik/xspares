@@ -3,13 +3,28 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True, blank=False, null=False)
     phone_number = models.CharField(max_length=15, unique=True, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
-    is_vendor = models.BooleanField(default=False)  # To distinguish vendors from customers
+    is_vendor = models.BooleanField(default=False) 
+    ROLE_CHOICES = [
+        ('user', 'User'),
+        ('vendor', 'Vendor'),
+        ('staff','Staff')
+    ]
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='user')
 
     def __str__(self):
         return self.username
+
+class Staff(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='staff_profile')
+    staff_number = models.CharField(max_length=50, unique=True)
+    role = models.CharField(max_length=100) 
+
+    def __str__(self):
+        return f"{self.user.username} ({self.role})"
 
 
 class Address(models.Model):
@@ -91,3 +106,14 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review for {self.vendor_item} by {self.user.username}"
+
+
+class EmailOTP(models.Model):
+    email = models.EmailField(unique=True)
+    otp = models.CharField(max_length=6)
+    is_verified = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()  # Set an expiry time for the OTP
+
+    def __str__(self):
+        return self.email
