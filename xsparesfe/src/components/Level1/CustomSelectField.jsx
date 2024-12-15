@@ -4,7 +4,7 @@ import { properties } from "@/style/styles";
 
 function CustomSelectField({ label, width, data, disabled, selectedData }) {
   const prop = properties();
-  
+
   const handleChange = (event, newValue) => {
     selectedData(newValue);
   };
@@ -20,7 +20,9 @@ function CustomSelectField({ label, width, data, disabled, selectedData }) {
         renderOption={(props, item) => {
           const { key, ...restProps } = props; // Destructure and separate key from other props
           return (
-            <li key={item.option} {...restProps}> {/* Directly set the key prop */}
+            <li key={item.option} {...restProps}>
+              {" "}
+              {/* Directly set the key prop */}
               {item.option} {/* Show both title and year in the dropdown */}
             </li>
           );
@@ -30,10 +32,26 @@ function CustomSelectField({ label, width, data, disabled, selectedData }) {
             {...params}
             label={label}
             sx={{
+              color: "black",
               width: { width },
+              "& label": {
+                color: "black", // default label color
+              },
+              "& label.Mui-focused": {
+                color: "black", // Change label color when field is focused
+              },
               borderRadius: "12px", // Adjust border radius here
               "& .MuiOutlinedInput-root": {
-                borderRadius: prop.borderRadius.xl2, // Ensuring the border-radius is applied to the input field
+                borderRadius: prop.borderRadius.twelve, // Ensuring the border-radius is applied to the input field
+                // '& fieldset': {
+                //   borderColor: 'grey', // default border color
+                // },
+                // '&:hover fieldset': {
+                //   borderColor: 'white', // border color on hover
+                // },
+                "&.Mui-focused fieldset": {
+                  borderColor: "black", // border color when focused
+                },
               },
             }}
           />
