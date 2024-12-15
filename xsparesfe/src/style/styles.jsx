@@ -3,14 +3,24 @@ import { Inter, Roboto_Flex, Lexend } from 'next/font/google'
 export const properties = () => {
   return {
     borderRadius: {
-      xs: '0.125rem', // 2px
-      sm: '0.3125rem', // 5px
-      md: '0.375rem', // 6px
-      lg: '0.5rem', // 8px
-      lg2: '0.625rem', //10px
-      xl: '0.75rem', // 12px
-      xl2: '0.938rem' // 15px
+      two: '0.125rem', // 2px xs
+      five: '0.3125rem', // 5px sm
+      six: '0.375rem', // 6px md
+      eight: '0.5rem', // 8px lg
+      ten: '0.625rem', //10px xl
+      twelve: '0.75rem', // 12px xl2
+      fifteen: '0.938rem', // 15px xl3
+      twentyFour: "1.5rem", //24px
     },
+    // borderRadius: {
+    //   xs: '0.125rem', // 2px
+    //   sm: '0.3125rem', // 5px
+    //   md: '0.375rem', // 6px
+    //   lg: '0.5rem', // 8px
+    //   lg2: '0.625rem', //10px
+    //   xl: '0.75rem', // 12px
+    //   xl2: '0.938rem' // 15px
+    // },
     borderWidth: {
       xs: '1px',
       sm: '2px',

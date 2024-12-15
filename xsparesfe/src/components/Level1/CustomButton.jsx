@@ -10,13 +10,20 @@ function CustomButton({
   endIcon,
   sx,
   fontSize,
+  onClick,
   ...props
 }) {
   const style = fontStyle();
   const prop = properties();
   return (
-    <div>
-      <Button variant={variant} sx={{ height: "100%", ...sx }} {...props}>
+    <div className="w-full h-full">
+      <Button
+        fullWidth
+        onClick={onClick}
+        variant={variant}
+        sx={{ height: "100%", width: "100%", ...sx }}
+        {...props}
+      >
         {startIcon && <span style={{ marginRight: 0 }}>{startIcon}</span>}
         <Typography
           sx={{
@@ -25,7 +32,7 @@ function CustomButton({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            ...style.b4
+            ...style.b4,
           }}
         >
           {children}
