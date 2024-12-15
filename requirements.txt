@@ -3,3 +3,5 @@ psycopg[binary,pool]
 pillow
 djangorestframework
 drf-yasg
+sendgrid
+python-dotenv

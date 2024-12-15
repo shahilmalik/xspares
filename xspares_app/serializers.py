@@ -1,7 +1,70 @@
 from rest_framework import serializers
 from django.db.models import Avg, Count
-from .models import Item, VendorItem, Review, Car
+from .models import Item, VendorItem, Review, Car, CustomUser, VendorProfile, Staff
+from django.contrib.auth.password_validation import validate_password
 
+
+class RegisterUserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
+    confirm_password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
+    role = serializers.ChoiceField(choices=CustomUser.ROLE_CHOICES, default='user')
+
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'email', 'phone_number', 'date_of_birth', 'password', 'confirm_password', 'role']
+
+    def validate_password(self, value):
+        """Validate the password for strength using Django's built-in validation."""
+        validate_password(value)  # Use Django's validators
+        return value
+    def validate(self, data):
+        # Ensure passwords match
+        if data['password'] != data['confirm_password']:
+            raise serializers.ValidationError({"password": "Passwords do not match."})
+        return data
+
+    def create(self, validated_data):
+        validated_data.pop('confirm_password')
+        password = validated_data.pop('password')
+        user = CustomUser(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user
+    
+class VendorProfileSerializer(serializers.ModelSerializer):
+    user = RegisterUserSerializer()
+    gst_number = serializers.CharField(required=True)
+
+    class Meta:
+        model = VendorProfile
+        fields = ['user', 'business_name', 'gst_number', 'store_url']
+
+    def create(self, validated_data):
+        """
+        Handle creation of VendorProfile along with associated CustomUser.
+        """
+        user_data = validated_data.pop('user')
+        user = CustomUser.objects.create_user(**user_data, role=CustomUser.VENDOR)
+        vendor_profile = VendorProfile.objects.create(user=user, **validated_data)
+        return vendor_profile
+
+
+class StaffProfileSerializer(serializers.ModelSerializer):
+    user = RegisterUserSerializer()
+
+    class Meta:
+        model = Staff
+        fields = ['user', 'staff_number', 'role']
+
+    def create(self, validated_data):
+        """
+        Handle creation of StaffProfile along with associated CustomUser.
+        """
+        user_data = validated_data.pop('user')
+        user = CustomUser.objects.create_user(**user_data, role=CustomUser.STAFF)
+        staff_profile = Staff.objects.create(user=user, **validated_data)
+        return staff_profile
+    
 
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
