@@ -58,6 +58,9 @@ class Car(models.Model):
 
     def __str__(self):
         return f"{self.brand} {self.model} {self.variant}"
+    
+    class Meta:
+        unique_together = ('brand', 'model', 'variant')
 
 
 class Item(models.Model):
