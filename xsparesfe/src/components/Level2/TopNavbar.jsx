@@ -14,7 +14,7 @@ function TopNavbar() {
   console.log("openLogin", openLogin);
   return (
     <div className="p-1 bg-[#0f212b]">
-      <div className="flex justify-between items-center h-[3.5rem] w-full">
+      <div className="flex justify-between items-center h-[4rem] w-full">
         <div className="flex basis-3/5 justify-start gap-x-6 ">
           <div className="basis-0.5/3 text-white flex items-center ml-5 text-xl cursor-pointer">
             Xspares
