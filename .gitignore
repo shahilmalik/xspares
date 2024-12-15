@@ -21,10 +21,10 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
-# Django
+*.cpython-*.pyc
+# Ignore Python cache files
 *.pyc
-__pycache__/
+
 *.pyo
 *.pyd
 .Python
@@ -43,3 +43,7 @@ db.sqlite3-journal
 venv/
 ENV/
 env
+
+Note
+.env
+*.csv

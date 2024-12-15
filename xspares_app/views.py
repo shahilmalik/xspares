@@ -99,11 +99,13 @@ def send_otp(request):
         message = Mail(
             subject="Verify Your Email - OTP",
             html_content=f"Hello,\n\nYour OTP is {otp}. It is valid for 10 minutes.\n\nThank you.",
-            from_email="akilakthar29@gmail.com",
+            from_email=settings.FROM_EMAIL,
             to_emails=email,
         )
-        api_key = settings.SENDGRID_API_kEY
+        api_key = settings.SENDGRID_API_KEY
         sg = SendGridAPIClient(api_key)
+        sg.send(message)
+
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -176,4 +178,5 @@ def get_items_by_car(request):
     # Serialize the items
     item_serializer = ItemSerializer(compatible_items, many=True)
     return Response(item_serializer.data, status=status.HTTP_200_OK)
+
 
