@@ -5,3 +5,4 @@ djangorestframework
 drf-yasg
 sendgrid
 python-dotenv
+django-cors-headers
