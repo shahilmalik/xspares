@@ -17,9 +17,9 @@ from django.conf import settings
 
 
 @swagger_auto_schema(
-    tags=["UserRegistration"],
+    tags=["Login and Signup"],
     method="POST",
-    query_serializer=RegisterUserSerializer,
+    request_body=RegisterUserSerializer,
     responses={200: "Profile created succesfully.", 400: "Error creaing a profile."},
 )
 @api_view(["POST"])
@@ -43,6 +43,12 @@ def register_user(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@swagger_auto_schema(
+    tags=["Login and Signup"],
+    method="POST",
+    request_body=RegisterUserSerializer,
+    responses={200: "Vendor registered successfully", 400: "Email is not verified"},
+)
 @api_view(["POST"])
 def register_vendor(request):
     email = request.data.get("email")
@@ -76,7 +82,17 @@ def register_vendor(request):
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+@swagger_auto_schema(
+    tags=["Login and Signup"],
+    method="POST",
+    request_body=openapi.Schema(
+        type=openapi.TYPE_OBJECT,
+        properties={
+            'email': openapi.Schema(type=openapi.TYPE_STRING, description="registration email")
+        },
+    ),
+    responses={200: "OTP sent successfully!", 400: "Email is required"},
+)
 @api_view(["POST"])
 def send_otp(request):
     email = request.data.get("email")
@@ -111,7 +127,18 @@ def send_otp(request):
 
     return Response({"message": "OTP sent successfully!"}, status=status.HTTP_200_OK)
 
-
+@swagger_auto_schema(
+    tags=["Login and Signup"],
+    method="POST",
+    request_body=openapi.Schema(
+        type=openapi.TYPE_OBJECT,
+        properties={
+            'email': openapi.Schema(type=openapi.TYPE_STRING, description="registration email"),
+            'OTP': openapi.Schema(type=openapi.TYPE_STRING),
+        },
+    ),
+    responses={200: "Vendor registered successfully", 400: "Email is not verified"},
+)
 @api_view(["POST"])
 def verify_otp(request):
     email = request.data.get("email")
@@ -179,13 +206,19 @@ def get_items_by_car(request):
     item_serializer = ItemSerializer(compatible_items, many=True)
     return Response(item_serializer.data, status=status.HTTP_200_OK)
 
-
+@swagger_auto_schema(
+    tags=["Dropdown"],
+    method="GET"
+)
 @api_view(['GET'])
 def get_makes(request):
     makes = Car.objects.values_list("brand", flat=True).distinct()
     return Response(makes)
 
-
+@swagger_auto_schema(
+    tags=["Dropdown"],
+    method="GET"
+)
 @api_view(['GET'])
 def get_models_by_make(request):
     make = request.query_params.get("make")
@@ -195,7 +228,10 @@ def get_models_by_make(request):
     models = Car.objects.filter(brand=make).values_list("model", flat=True).distinct()
     return Response(models)
 
-
+@swagger_auto_schema(
+    tags=["Dropdown"],
+    method="GET"
+)
 @api_view(['GET'])
 def get_variants_by_model(request):
     make = request.query_params.get("make")
