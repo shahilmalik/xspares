@@ -92,3 +92,12 @@ class CarModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
         fields = '__all__'
+
+class MakeSerializer(serializers.Serializer):
+    make = serializers.CharField()
+
+class ModelSerializer(serializers.Serializer):
+    model = serializers.CharField()
+
+class VariantSerializer(serializers.Serializer):
+    variant = serializers.CharField()

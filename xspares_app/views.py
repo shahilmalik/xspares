@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Avg, Count
 from .models import Car, Item, VendorItem, Review, EmailOTP
-from .serializers import ItemSerializer, CarModelSerializer, RegisterUserSerializer, VendorProfileSerializer, StaffProfileSerializer
+from .serializers import ItemSerializer, CarModelSerializer, RegisterUserSerializer, VendorProfileSerializer, StaffProfileSerializer, ModelSerializer, MakeSerializer, VariantSerializer
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from django.core.mail import send_mail
@@ -180,3 +180,28 @@ def get_items_by_car(request):
     return Response(item_serializer.data, status=status.HTTP_200_OK)
 
 
+@api_view(['GET'])
+def get_makes(request):
+    makes = Car.objects.values_list("brand", flat=True).distinct()
+    return Response(makes)
+
+
+@api_view(['GET'])
+def get_models_by_make(request):
+    make = request.query_params.get("make")
+    if not make:
+        return Response({"error": "Make is required"}, status=400)
+
+    models = Car.objects.filter(brand=make).values_list("model", flat=True).distinct()
+    return Response(models)
+
+
+@api_view(['GET'])
+def get_variants_by_model(request):
+    make = request.query_params.get("make")
+    model = request.query_params.get("model")
+    if not model or not make:
+        return Response({"error": "Make or Model is missing"}, status=400)
+
+    variants = Car.objects.filter(brand=make,model=model).values_list("variant", flat=True)
+    return Response(variants)
