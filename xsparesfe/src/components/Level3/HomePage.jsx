@@ -8,8 +8,8 @@ function HomePage() {
   const subHeading =
     " Find the Perfect Spares for Your Car – Fast, Easy & Hassle-Free!";
   return (
-    <div className="bg-slate-200 h-[93vh] flex flex-col justify-center items-center gap-y-[7rem]">
-      <div className="w-[60%] px-5">
+    <div className="bg-slate-200 h-[93vh] flex flex-col  items-center gap-y-[6rem]">
+      <div className="w-[60%] px-5 mt-20">
         <div
           className="header"
           style={{
@@ -36,10 +36,12 @@ function HomePage() {
         </div>
       </div>
       <div
-        className="w-[60vw] bg-white border-2 border-black  shadow-2xl"
+        className="min-w-[60vw] relative mt-5 bg-white border-2 border-black  shadow-2xl"
         style={{ borderRadius: prop.borderRadius.twentyFour }}
       >
-        <CarModelSelection />
+        <div className="relative">
+          <CarModelSelection />
+        </div>
       </div>
     </div>
   );
