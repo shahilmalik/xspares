@@ -1,43 +1,75 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CustomSelectField from "../Level1/CustomSelectField";
-
+import axios from "axios";
 function CarModelSelection() {
-  const carBrand = [
-    //Dummy data
-    { option: "Maruti Suzuki" },
-    { option: "Hyundai" },
-    { option: "Tata Motors" },
-    { option: "Mahindra" },
-    { option: "Honda" },
-  ];
-  const carModel = [
-    //Dummy data
-    { option: "Swift" },
-    { option: "Creta" },
-    { option: "Nexon" },
-    { option: "XUV700" },
-    { option: "City" },
-  ];
-
-  const carYears = [
-    //Dummy data
-    { option: "2012" },
-    { option: "2015" },
-    { option: "2016" },
-    { option: "2018" },
-    { option: "2020" },
-  ];
-  const [carBrandData, setCarBrandData] = useState(null);
+  const [loading, setLoading] = useState();
+  const [carMake, setCarMake] = useState(); //API CALL for make
+  const [carModel, setCarModel] = useState(); //API CALL for make
+  const [carVariant, setCarVariant] = useState(); //API CALL for make
+  const [carBrandData, setCarBrandData] = useState(null); //Selected car
   const [carModelData, setCarModelData] = useState(null);
-  const [carYearData, setCarYearData] = useState(null);
+  const [carVariantData, setCarVariantData] = useState(null);
+
+  useEffect(() => {//API CALL FOR MAKE
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `http://localhost:8000/api/get-makes/`
+        );
+        setCarMake(response.data);
+      } catch (error) {
+        console.error("Error posting data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  //API CALL FOR MODELS
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `http://localhost:8000/api/get-models-by-make/?make=${carBrandData}`
+        );
+        setCarModel(response.data);
+      } catch (error) {
+        console.error("Error posting data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [carBrandData]);
+
+  //API CALL FOR VARIANT
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `http://localhost:8000/api/get-variants-by-model/?make=${carBrandData}&model=${carModelData}`
+        );
+        setCarVariant(response.data);
+      } catch (error) {
+        console.error("Error posting data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [carModelData]);
 
   return (
     <div className="flex justify-between m-5">
       <CustomSelectField
         label="Select Make"
         width="20rem"
-        data={carBrand}
+        data={carMake}
         selectedData={setCarBrandData}
       />
       <CustomSelectField
@@ -50,9 +82,9 @@ function CarModelSelection() {
       <CustomSelectField
         label="Select Variant"
         width="20rem"
-        data={carYears}
+        data={carVariant}
         disabled={carBrandData !== null && carModelData !== null ? false : true}
-        selectedData={setCarYearData}
+        selectedData={setCarVariantData}
       />
     </div>
   );

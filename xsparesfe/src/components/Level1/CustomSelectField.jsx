@@ -16,14 +16,14 @@ function CustomSelectField({ label, width, data, disabled, selectedData }) {
         options={data}
         disabled={disabled}
         onChange={handleChange}
-        getOptionLabel={(item) => item.option}
+        getOptionLabel={(item) => item}
         renderOption={(props, item) => {
           const { key, ...restProps } = props; // Destructure and separate key from other props
           return (
-            <li key={item.option} {...restProps}>
+            <li key={item} {...restProps}>
               {" "}
               {/* Directly set the key prop */}
-              {item.option} {/* Show both title and year in the dropdown */}
+              {item} {/* Show both title and year in the dropdown */}
             </li>
           );
         }}
