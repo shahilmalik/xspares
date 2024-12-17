@@ -6,7 +6,7 @@ import StarHalfIcon from '@mui/icons-material/StarHalf';
 function ProductCard() {
   const prop = properties();
   return (
-    <div className="hover:shadow-2xl transition-all duration-300 rounded-2xl hover:translate-y-[-0.5rem] p-4 bg-white m-4 w-[16rem]">
+    <div className="hover:shadow-2xl transition-all duration-300 rounded-2xl hover:translate-y-[-0.5rem] p-4 bg-white m-4 w-[16rem] cursor-pointer">
       <div className=" flex items-center justify-center">
         <div className="h-[10rem] w-[15rem] bg-slate-100 border-2 rounded-2xl flex justify-center items-center">
         </div>

@@ -18,8 +18,8 @@ function HomePage() {
         }`}
       >
         <div
-          className={`w-[60%] px-5 mt-[10rem] transition-all duration-500  ${
-            allSelected ? "mt-[-20rem]" : ""
+          className={`w-[60%] px-5  transition-all duration-500  ${
+            allSelected ? "mt-[-20rem]" : "mt-[15rem]"
           }`}
         >
           <div
@@ -48,14 +48,14 @@ function HomePage() {
           </div>
         </div>
         <div
-          className={`transition-all duration-1000 min-w-[60vw] relative mt-5 bg-white  ${
+          className={`transition-all duration-500 min-w-[60vw] relative mt-5 bg-white  ${
             allSelected
-              ? "fixed top-10 w-full"
-              : "shadow-2xl border-2 border-black"
+              ? "fixed top-10 min-w-[100vw] "
+              : "shadow-2xl border-2 border-black rounded-[24px]"
           } `}
-          style={{
-            borderRadius: allSelected ? null : prop.borderRadius.twentyFour,
-          }}
+          // style={{
+          //   borderRadius: allSelected ? null : prop.borderRadius.twentyFour,
+          // }}
         >
           <div className="relative">
             <CarModelSelection
@@ -66,7 +66,7 @@ function HomePage() {
         </div>
       </div>
       {allSelected && (
-        <div className="w-[100vw] grid grid-cols-6 justify-around mt-[4rem] overflow-y-auto">
+        <div className="w-full grid grid-cols-6 justify-around items-center mt-[4rem] ">
           <ProductCard />
           <ProductCard />
           <ProductCard />
@@ -83,7 +83,6 @@ function HomePage() {
           <ProductCard />
           <ProductCard />
           <ProductCard />
-        
         </div>
       )}
     </div>
