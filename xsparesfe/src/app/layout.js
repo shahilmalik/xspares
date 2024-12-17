@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`antialiased ${inter.className}`}>
-        <div>
+        <div className="fixed top-0 w-full z-[9999]">
           <TopNavbar />
         </div>
         <div>{children}</div>

@@ -92,25 +92,25 @@ function CarModelSelection({ setAllSelected, allSelected }) {
       setCarVariantData(null);
       console.log("setting car model to null");
     }
-  }, [carMakeData, carVariantData,setCarMakeData]);
+  }, [carMakeData, carVariantData, setCarMakeData]);
   return (
-    <div className="flex justify-between m-5">
+    <div className="flex justify-between m-5 gap-x-6">
       <CustomSelectField
         label="Select Make"
-        width="20rem"
+        width="100%"
         data={carMake}
         selectedData={setCarMakeData}
       />
       <CustomSelectField
         label="Select Model"
-        width="20rem"
+        width="100%"
         data={carModel}
         disabled={carMakeData !== null ? false : true}
         selectedData={setCarModelData}
       />
       <CustomSelectField
         label="Select Variant"
-        width="20rem"
+        width="100%"
         data={carVariant}
         disabled={carMakeData !== null && carModelData !== null ? false : true}
         selectedData={setCarVariantData}
