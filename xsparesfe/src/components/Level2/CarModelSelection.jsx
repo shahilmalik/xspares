@@ -2,16 +2,17 @@
 import React, { useState, useEffect } from "react";
 import CustomSelectField from "../Level1/CustomSelectField";
 import axios from "axios";
-function CarModelSelection() {
+function CarModelSelection({ setAllSelected, allSelected }) {
   const [loading, setLoading] = useState();
   const [carMake, setCarMake] = useState(); //API CALL for make
   const [carModel, setCarModel] = useState(); //API CALL for make
   const [carVariant, setCarVariant] = useState(); //API CALL for make
-  const [carBrandData, setCarBrandData] = useState(null); //Selected car
-  const [carModelData, setCarModelData] = useState(null);
-  const [carVariantData, setCarVariantData] = useState(null);
+  const [carMakeData, setCarMakeData] = useState(null); //Selected car Make
+  const [carModelData, setCarModelData] = useState(null); //Selected car Model
+  const [carVariantData, setCarVariantData] = useState(null); //Selected car Variant
 
-  useEffect(() => {//API CALL FOR MAKE
+  useEffect(() => {
+    //API CALL FOR MAKE
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -34,7 +35,7 @@ function CarModelSelection() {
       try {
         setLoading(true);
         const response = await axios.get(
-          `http://localhost:8000/api/get-models-by-make/?make=${carBrandData}`
+          `http://localhost:8000/api/get-models-by-make/?make=${carMakeData}`
         );
         setCarModel(response.data);
       } catch (error) {
@@ -44,7 +45,7 @@ function CarModelSelection() {
       }
     };
     fetchData();
-  }, [carBrandData]);
+  }, [carMakeData]);
 
   //API CALL FOR VARIANT
   useEffect(() => {
@@ -52,7 +53,7 @@ function CarModelSelection() {
       try {
         setLoading(true);
         const response = await axios.get(
-          `http://localhost:8000/api/get-variants-by-model/?make=${carBrandData}&model=${carModelData}`
+          `http://localhost:8000/api/get-variants-by-model/?make=${carMakeData}&model=${carModelData}`
         );
         setCarVariant(response.data);
       } catch (error) {
@@ -64,26 +65,54 @@ function CarModelSelection() {
     fetchData();
   }, [carModelData]);
 
+  useEffect(() => {
+    if (
+      carMakeData !== null &&
+      carModelData !== null &&
+      carVariantData !== null
+    ) {
+      console.log("if statement");
+      setAllSelected(true);
+    } else {
+      setAllSelected(false);
+    }
+  }, [setCarVariant, carVariantData]);
+  console.log("allSelected", allSelected);
+  console.log("carMakeData", carMakeData);
+  console.log("carModelData", carModelData);
+  console.log("carVariantData", carVariantData);
+
+  useEffect(() => {
+    if (carMakeData === null) {
+      setCarModelData(null);
+      setCarVariantData(null);
+      console.log("setting car variant to null");
+    }
+    if (carModelData === null) {
+      setCarVariantData(null);
+      console.log("setting car model to null");
+    }
+  }, [carMakeData, carVariantData,setCarMakeData]);
   return (
     <div className="flex justify-between m-5">
       <CustomSelectField
         label="Select Make"
         width="20rem"
         data={carMake}
-        selectedData={setCarBrandData}
+        selectedData={setCarMakeData}
       />
       <CustomSelectField
         label="Select Model"
         width="20rem"
         data={carModel}
-        disabled={carBrandData !== null ? false : true}
+        disabled={carMakeData !== null ? false : true}
         selectedData={setCarModelData}
       />
       <CustomSelectField
         label="Select Variant"
         width="20rem"
         data={carVariant}
-        disabled={carBrandData !== null && carModelData !== null ? false : true}
+        disabled={carMakeData !== null && carModelData !== null ? false : true}
         selectedData={setCarVariantData}
       />
     </div>
