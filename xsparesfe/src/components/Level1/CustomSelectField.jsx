@@ -10,7 +10,7 @@ function CustomSelectField({ label, width, data, disabled, selectedData }) {
   };
 
   return (
-    <div>
+    <div className="w-full transition-all">
       <Autocomplete
         disablePortal
         options={data}
@@ -18,12 +18,11 @@ function CustomSelectField({ label, width, data, disabled, selectedData }) {
         onChange={handleChange}
         getOptionLabel={(item) => item}
         renderOption={(props, item) => {
-          const { key, ...restProps } = props; // Destructure and separate key from other props
+          const { key, ...restProps } = props; 
           return (
             <li key={item} {...restProps}>
               {" "}
-              {/* Directly set the key prop */}
-              {item} {/* Show both title and year in the dropdown */}
+              {item} 
             </li>
           );
         }}
@@ -43,12 +42,6 @@ function CustomSelectField({ label, width, data, disabled, selectedData }) {
               borderRadius: "12px", // Adjust border radius here
               "& .MuiOutlinedInput-root": {
                 borderRadius: prop.borderRadius.twelve, // Ensuring the border-radius is applied to the input field
-                // '& fieldset': {
-                //   borderColor: 'grey', // default border color
-                // },
-                // '&:hover fieldset': {
-                //   borderColor: 'white', // border color on hover
-                // },
                 "&.Mui-focused fieldset": {
                   borderColor: "black", // border color when focused
                 },
