@@ -23,7 +23,6 @@ function OtpFields({ setOtpData }) {
   useEffect(() => {
     const otpString = values.join("");
     setOtpData(otpString);
-    console.log("OTP", otpString);
   }, [values]);
 
   // Handle backspace to move to the previous input

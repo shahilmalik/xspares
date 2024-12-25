@@ -1,0 +1,94 @@
+{
+  "engineComponents": [
+    {
+      "id": 1,
+      "sku": "ENG-101",
+      "name": "Pistons & Rings",
+      "description": "High-quality pistons and rings for optimal combustion.",
+      "starRating": 3.7,
+      "price": 120.99,
+      "availability": "In Stock"
+    },
+    {
+      "id": 2,
+      "sku": "ENG-102",
+      "name": "Camshafts",
+      "description": "Durable camshafts for precision valve timing.",
+      "starRating": 2.5,
+      "price": 350.0,
+      "availability": "Out of Stock"
+    },
+    {
+      "id": 3,
+      "sku": "ENG-103",
+      "name": "Crankshafts",
+      "description": "Robust crankshafts for smoother engine operation.",
+      "starRating": 1.8,
+      "price": 550.0,
+      "availability": "In Stock"
+    },
+    {
+      "id": 4,
+      "sku": "ENG-104",
+      "name": "Engine Mounts",
+      "description": "Reliable engine mounts to reduce vibration.",
+      "starRating": 4.3,
+      "price": 75.0,
+      "availability": "In Stock"
+    },
+    {
+      "id": 5,
+      "sku": "ENG-105",
+      "name": "Timing Belts",
+      "description": "Premium timing belts for long-lasting performance.",
+      "starRating": 4.6,
+      "price": 65.5,
+      "availability": "Limited Stock"
+    },
+    {
+      "id": 6,
+      "sku": "ENG-106",
+      "name": "Valve Lifters",
+      "description": "Precision-engineered valve lifters for efficient performance.",
+      "starRating": 2.4,
+      "price": 45.0,
+      "availability": "In Stock"
+    },
+    {
+      "id": 7,
+      "sku": "ENG-107",
+      "name": "Oil Pumps",
+      "description": "Efficient oil pumps to ensure engine lubrication.",
+      "starRating": 1.9,
+      "price": 140.0,
+      "availability": "In Stock"
+    },
+    {
+      "id": 8,
+      "sku": "ENG-108",
+      "name": "Cylinder Heads",
+      "description": "Durable cylinder heads for improved airflow.",
+      "starRating": 4.7,
+      "price": 670.0,
+      "availability": "Out of Stock"
+    },
+    {
+      "id": 9,
+      "sku": "ENG-109",
+      "name": "Connecting Rods",
+      "description": "High-strength connecting rods for superior performance.",
+      "starRating": 2.5,
+      "price": 180.0,
+      "availability": "In Stock"
+    },
+    {
+      "id": 10,
+      "sku": "ENG-110",
+      "name": "Engine Sensors",
+      "description": "Advanced sensors for accurate engine monitoring.",
+      "starRating": 3.6,
+      "price": 95.0,
+      "availability": "Limited Stock"
+    }
+  ]
+}

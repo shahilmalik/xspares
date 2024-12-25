@@ -1,15 +1,13 @@
 import React from "react";
 import CustomButton from "../Level1/CustomButton";
 import { properties } from "@/style/styles";
-import StarIcon from '@mui/icons-material/Star';
-import StarHalfIcon from '@mui/icons-material/StarHalf';
-function ProductCard() {
+import StarRating from "../Level1/StarRating";
+function ProductCard({ data }) {
   const prop = properties();
   return (
-    <div className="hover:shadow-2xl transition-all duration-300 rounded-2xl hover:translate-y-[-0.5rem] p-4 bg-white m-4 w-[16rem] cursor-pointer">
+    <div className="hover:shadow-xl transition-all duration-300 rounded-2xl hover:translate-y-[-0.2rem] p-4 bg-white m-4 w-[16rem] cursor-pointer">
       <div className=" flex items-center justify-center">
-        <div className="h-[10rem] w-[15rem] bg-slate-100 border-2 rounded-2xl flex justify-center items-center">
-        </div>
+        <div className="h-[10rem] w-[15rem] bg-slate-100 border-2 rounded-2xl flex justify-center items-center"></div>
       </div>
       <div>
         <div className="ml-2 my-2">
@@ -19,17 +17,24 @@ function ProductCard() {
               fontWeight: prop.fontWeight.bold,
             }}
           >
-            Air Filter
+            {data.name}
           </div>
-          <div style={{ fontSize: prop.fontSize.twelve }}>#SUK&789</div>
+          <div style={{ fontSize: prop.fontSize.twelve }}>#{data.sku}</div>
+          <StarRating rating={data.starRating} />
+          <div>
+            {" "}
+            <span
+              style={{
+                fontSize: prop.fontSize.sixteen,
+                fontWeight: prop.fontWeight.bold,
+              }}
+            >
+              Price :{" "}
+            </span>
+            Rs.{data.price}
+          </div>
         </div>
-        <div className="flex mb-1">
-            <StarIcon/>
-            <StarIcon/>
-            <StarIcon/>
-            <StarIcon/>
-            <StarHalfIcon/>
-        </div>
+
         {/* Add Counte here */}
       </div>
       <div>
