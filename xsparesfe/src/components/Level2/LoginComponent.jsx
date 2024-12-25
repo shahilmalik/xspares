@@ -14,13 +14,11 @@ function LoginComponent({ openLogin, setOpenLogin }) {
   const [postOTP, setPostOTP] = useState({ email: "", otp: "" });
   const [loading, setLoading] = useState();
   const [emailData, setEmailData] = useState({ email: "" }); // Track email input
-  console.log("@#@ emailData", emailData);
   const [passwordData, setPasswordData] = useState(""); //Typed Password data
   const [loginCompControl, setLoginCompControl] = useState({
     login: 0,
     signup: 0,
   });
-  console.log("loginCompControl::", loginCompControl);
   const [isInValidEmail, setIsInValidEmail] = useState(true); //will check if it is a valid email
   const [otpData, setOtpData] = useState(); //OTP's 6 digit data
 
@@ -46,18 +44,13 @@ function LoginComponent({ openLogin, setOpenLogin }) {
   };
   useEffect(() => {
     if (loginCompControl.login === 1) {
-      console.log("PAssword Field Expansion");
     } else if (loginCompControl.login === 2) {
-      console.log("Post Password:", passwordData, "Post Email:", emailData);
     }
   }, [loginCompControl.login]);
   useEffect(() => {
     if (loginCompControl.signup === 1) {
-      console.log("Check Email from DB");
     } else if (loginCompControl.signup === 2) {
-      console.log("GET OTP:", emailData);
     } else if (loginCompControl.signup === 3) {
-      console.log("validate OTP:", otpData);
     }
   }, [loginCompControl.signup]);
 

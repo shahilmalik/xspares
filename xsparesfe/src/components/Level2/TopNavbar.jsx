@@ -11,7 +11,6 @@ function TopNavbar() {
   const handleOpen = () => {
     setOpenLogin(true);
   };  
-  console.log("openLogin", openLogin);
   return (
     <div className="p-1 bg-[#0f212b]">
       <div className="flex justify-between items-center h-[6vh] w-full">

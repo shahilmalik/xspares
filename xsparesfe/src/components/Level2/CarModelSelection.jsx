@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import CustomSelectField from "../Level1/CustomSelectField";
 import axios from "axios";
-function CarModelSelection({ setAllSelected, allSelected }) {
+function CarModelSelection({ setAllSelected, setShowItems }) {
   const [loading, setLoading] = useState();
   const [carMake, setCarMake] = useState(); //API CALL for make
   const [carModel, setCarModel] = useState(); //API CALL for make
@@ -71,26 +71,20 @@ function CarModelSelection({ setAllSelected, allSelected }) {
       carModelData !== null &&
       carVariantData !== null
     ) {
-      console.log("if statement");
       setAllSelected(true);
     } else {
+      setShowItems(false)
       setAllSelected(false);
     }
   }, [setCarVariant, carVariantData]);
-  console.log("allSelected", allSelected);
-  console.log("carMakeData", carMakeData);
-  console.log("carModelData", carModelData);
-  console.log("carVariantData", carVariantData);
 
   useEffect(() => {
     if (carMakeData === null) {
       setCarModelData(null);
       setCarVariantData(null);
-      console.log("setting car variant to null");
     }
     if (carModelData === null) {
       setCarVariantData(null);
-      console.log("setting car model to null");
     }
   }, [carMakeData, carVariantData, setCarMakeData]);
   return (

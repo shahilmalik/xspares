@@ -1,0 +1,180 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Engine Components",
+      "description": "Parts related to the engine system.",
+      "subcategories": [
+        {
+          "id": 101,
+          "name": "Pistons & Rings",
+          "description": "Components of the combustion chamber."
+        },
+        {
+          "id": 102,
+          "name": "Camshafts & Timing",
+          "description": "Parts for controlling valve timing."
+        },
+        {
+          "id": 103,
+          "name": "Engine Mounts",
+          "description": "Support mounts for securing the engine."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Electrical Systems",
+      "description": "Electrical components of the vehicle.",
+      "subcategories": [
+        {
+          "id": 201,
+          "name": "Batteries",
+          "description": "Automotive batteries and related accessories."
+        },
+        {
+          "id": 202,
+          "name": "Alternators & Starters",
+          "description": "Parts for starting and charging the engine."
+        },
+        {
+          "id": 203,
+          "name": "Fuses & Relays",
+          "description": "Components for circuit protection and control."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Suspension & Steering",
+      "description": "Parts related to the suspension and steering systems.",
+      "subcategories": [
+        {
+          "id": 301,
+          "name": "Shock Absorbers",
+          "description": "Dampers to absorb road shocks."
+        },
+        {
+          "id": 302,
+          "name": "Steering Racks",
+          "description": "Components for steering the vehicle."
+        },
+        {
+          "id": 303,
+          "name": "Control Arms",
+          "description": "Links for connecting suspension to the chassis."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Braking Systems",
+      "description": "Parts related to vehicle braking.",
+      "subcategories": [
+        {
+          "id": 401,
+          "name": "Brake Pads & Rotors",
+          "description": "Components for stopping the vehicle."
+        },
+        {
+          "id": 402,
+          "name": "Brake Calipers",
+          "description": "Parts that apply brake force to the rotors."
+        },
+        {
+          "id": 403,
+          "name": "Brake Lines & Hoses",
+          "description": "Hydraulic lines for transferring brake fluid."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Body & Exterior",
+      "description": "Exterior parts of the vehicle.",
+      "subcategories": [
+        {
+          "id": 501,
+          "name": "Bumpers",
+          "description": "Front and rear bumpers for vehicles."
+        },
+        {
+          "id": 502,
+          "name": "Lights & Lamps",
+          "description": "Headlights, taillights, and signal lamps."
+        },
+        {
+          "id": 503,
+          "name": "Mirrors",
+          "description": "Side and rearview mirrors."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Interior Accessories",
+      "description": "Parts and accessories for the vehicle's interior.",
+      "subcategories": [
+        {
+          "id": 601,
+          "name": "Seat Covers",
+          "description": "Protective covers for car seats."
+        },
+        {
+          "id": 602,
+          "name": "Floor Mats",
+          "description": "Mats to protect the car floor."
+        },
+        {
+          "id": 603,
+          "name": "Dashboards & Panels",
+          "description": "Interior panels and dashboard components."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Exhaust Systems",
+      "description": "Components related to exhaust systems.",
+      "subcategories": [
+        {
+          "id": 701,
+          "name": "Exhaust Pipes",
+          "description": "Pipes for expelling engine exhaust gases."
+        },
+        {
+          "id": 702,
+          "name": "Mufflers",
+          "description": "Components to reduce exhaust noise."
+        },
+        {
+          "id": 703,
+          "name": "Catalytic Converters",
+          "description": "Parts for reducing exhaust emissions."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Cooling Systems",
+      "description": "Parts related to engine cooling.",
+      "subcategories": [
+        {
+          "id": 801,
+          "name": "Radiators",
+          "description": "Cooling system components for heat exchange."
+        },
+        {
+          "id": 802,
+          "name": "Coolant Hoses",
+          "description": "Hoses for transporting coolant."
+        },
+        {
+          "id": 803,
+          "name": "Thermostats",
+          "description": "Components for regulating engine temperature."
+        }
+      ]
+    }
+  ]
+}
